@@ -1,5 +1,5 @@
 {
   "rewrites": [
-    { "source": "/(.*)", "destination": "/flaskapp" }
+    { "source": "/(.*)", "destination": "/flaskapp.py" }
   ]
 }

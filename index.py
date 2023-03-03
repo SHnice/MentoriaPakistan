@@ -13,7 +13,7 @@ try:
     client.admin.command('ping')
     print("Connected to MongoDB!")
 except Exception as e:
-    print("Unable to connect to MongoDB:", e)
+    print("Unable to connnect to MongoDB:", e)
 
 
 

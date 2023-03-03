@@ -23,7 +23,7 @@ def index():
 
 @app.route('/quiz')
 def quiz():
-  return render_template('quiz.html')
+    return render_template('quiz.html')
 
 
 
@@ -38,33 +38,34 @@ def submitData():
 
 @app.route('/mcqs')
 def mcqs():
-      return render_template('mcqs.html')
+    return render_template('mcqs.html')
 
 @app.route('/mcqsData',methods=['post'])
 def mcqsData():
-     data = request.get_json()
-     data.append(fulldata[-1])
-     answers = data[:-1]
-     result = collection.insert_one({'answers':answers,'info':data[-1]})
-     return 'done'
+    data = request.get_json()
+    data.append(fulldata[-1])
+    answers = data[:-1]
+    result = collection.insert_one({'answers':answers,'info':data[-1]})
+    return 'done'
 
 @app.route('/end')
 def end():
-     return render_template('end.html')
+    return render_template('end.html')
 
 @app.route('/admin4321')
 def admin():
-     answers = []
-     info = []
-     data = list(collection.find())
-     for i in range(len(data)):
+    answers = []
+    info = []
+    data = list(collection.find())
+    for i in range(len(data)):
+
           
         answers.append(data[i]['answers'])
         info.append(data[i]['info'])
      
     
           
-     return render_template('admin.html',data=info)
+    return render_template('admin.html',data=info)
 
 
 if __name__ == '__main__':

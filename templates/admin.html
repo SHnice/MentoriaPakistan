@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/main.css')}}" />
+    
+
+</head>
+
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.7.3/alpine.js"></script>
+    <header class="text-gray-600 body-font">
+        <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+            <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round"
+                    stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full"
+                    viewBox="0 0 24 24">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                </svg>
+                <span class="ml-3 text-xl">Mentoria</span>
+            </a>
+            <nav
+                class="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap items-center text-base justify-center">
+                <a class="mr-5 hover:text-gray-900">Mentoria</a>
+            </nav>
+            <button
+                class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">Button
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    class="w-4 h-4 ml-1" viewBox="0 0 24 24">
+                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+
+
+    <div class="container mx-auto">
+        <h1 class="text-3xl font-bold mb-4">Dashboard</h1>
+        <table class="table-auto w-full">
+            <thead>
+                <tr>
+                    <th class="px-1 py-2">index </th>
+                    <th class="px-4 py-2">Name</th>
+                    <th class="px-4 py-2">Phone</th>
+                    <th class="px-4 py-2">School</th>
+                    <th class="px-4 py-2">Column 2</th>
+                    <th class="px-4 py-2">Column 3</th>
+                    <th class="px-4 py-2">Column 4</th>
+                    <th class="px-4 py-2">Column 5</th>
+                    <th class="px-4 py-2">Column 6</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in data %}
+                <tr>
+                    <td class="border px-1 text-center py-2">{{ loop.index }}</td>
+                    <td class="border px-4 py-2 text-center">{{ item['name'] }}</td>
+                    <td class="border px-4 py-2">{{ item['phone'] }}</td>
+                    <td class="border px-4 py-2">{{ item['school'] }}</td>
+                    <td class="border px-4 py-2">{{ item.column4 }}</td>
+                    <td class="border px-4 py-2">{{ item.column5 }}</td>
+                    <td class="border px-4 py-2">{{ item.column6 }}</td>
+                    <td class="border px-4 py-2">{{ item.column2 }}</td>
+                    <td class="border px-4 py-2">{{ item.column2 }}</td>
+                </tr>
+                {% endfor %}
+             
+
+            </tbody>
+        </table>
+    </div>
+
+
+</body>
+
+</html>

@@ -55,18 +55,36 @@ def end():
 
 @app.route('/admin4321')
 def admin():
-    answers = []
-    info = []
+    solution = ['option2','option2','option3','option1','option3','option3','option3','option2','option4','option3',
+               'option3','option4','option4','option2','option2','option3','option2','option3','option4','option3',
+               'option3','option4','option1','option2','option2','option3','option4','option3','option3','option4',
+               'option2','option2','option3','option2','option4','option3','option2','option4','option3','option1']
+    last = []
     data = list(collection.find())
-    for i in range(len(data)):
 
-          
-        answers.append(data[i]['answers'])
-        info.append(data[i]['info'])
-     
-    
-          
-    return render_template('admin.html',data=info)
+    quantitative = iq = physics = chemistry = 0
+    for i in range(len(data)):
+        info = data[i]['info']
+        info['answers'] = []
+        for j in range(40):
+            if data[i]['answers'][j]['value'] == solution[j]:
+                info['answers'].append(True)
+                if j<10 : quantitative = quantitative+1
+                elif j<20: iq = iq+1
+                elif j<30: physics = physics+1
+                else: chemistry = chemistry+1
+            else:
+                info['answers'].append(False)
+        
+        info["quantitative"] = quantitative
+        info["iq"] = iq
+        info["physics"] = physics
+        info["chemistry"] = chemistry
+        info["total"] = quantitative+iq+physics+chemistry
+        last.append(info)
+        quantitative = iq = physics = chemistry = 0
+    print(last)
+    return render_template('admin.html',data=last)
 
 
 if __name__ == '__main__':

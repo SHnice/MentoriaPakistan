@@ -48,11 +48,11 @@
                     <th class="px-4 py-2">Name</th>
                     <th class="px-4 py-2">Phone</th>
                     <th class="px-4 py-2">School</th>
-                    <th class="px-4 py-2">Column 2</th>
-                    <th class="px-4 py-2">Column 3</th>
-                    <th class="px-4 py-2">Column 4</th>
-                    <th class="px-4 py-2">Column 5</th>
-                    <th class="px-4 py-2">Column 6</th>
+                    <th class="px-4 py-2">Quantitative</th>
+                    <th class="px-4 py-2">IQ</th>
+                    <th class="px-4 py-2">Physics</th>
+                    <th class="px-4 py-2">Chemistry</th>
+                    <th class="px-4 py-2">Total</th>
                 </tr>
             </thead>
             <tbody>
@@ -60,17 +60,15 @@
                 <tr>
                     <td class="border px-1 text-center py-2">{{ loop.index }}</td>
                     <td class="border px-4 py-2 text-center">{{ item['name'] }}</td>
-                    <td class="border px-4 py-2">{{ item['phone'] }}</td>
-                    <td class="border px-4 py-2">{{ item['school'] }}</td>
-                    <td class="border px-4 py-2">{{ item.column4 }}</td>
-                    <td class="border px-4 py-2">{{ item.column5 }}</td>
-                    <td class="border px-4 py-2">{{ item.column6 }}</td>
-                    <td class="border px-4 py-2">{{ item.column2 }}</td>
-                    <td class="border px-4 py-2">{{ item.column2 }}</td>
+                    <td class="border px-4 py-2 text-center">{{ item['phone'] }}</td>
+                    <td class="border px-4 py-2 text-center">{{ item['school'] }}</td>
+                    <td class="border px-4 py-2 text-center">{{ item['quantitative'] }}</td>
+                    <td class="border px-4 py-2 text-center">{{  item['iq'] }}</td>
+                    <td class="border px-4 py-2 text-center">{{  item['physics'] }}</td>
+                    <td class="border px-4 py-2 text-center">{{  item['chemistry']  }}</td>
+                    <td class="border px-4 py-2 text-center">{{  item['total']  }}</td>
                 </tr>
                 {% endfor %}
-             
-
             </tbody>
         </table>
     </div>

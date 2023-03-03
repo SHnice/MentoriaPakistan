@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Arsha Bootstrap Template - Index</title>
+    <title>Mentoria</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="../static/assets/img/favicon.png" rel="icon">
-    <link href="../static/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="../static/assets/img/mentlogo.jpeg" rel="icon">
+    <link href="../static/assets/img/mentlogo.jpeg" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link
@@ -55,7 +55,7 @@
     <header id="header" style="background-color: rgba(40, 58, 90, 0.9);" class="fixed-top ">
         <div class="container d-flex align-items-center">
 
-            <h1 class="logo me-auto"><a href="/">Arsha</a></h1>
+            <h1 class="logo me-auto"><a href="/">Mentoria</a></h1>
             <!-- Uncomment below if you prefer to use an image logo -->
             <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
@@ -966,7 +966,7 @@
                         </div>
 
                         <div class="bg-gray-200 shadow-md rounded px-8 pt-6 pb-8 mb-4">
-                            <h3 class="text-xl font-bold mb-4">Question 36: What is the answer?</h3>
+                            <h3 class="text-xl font-bold mb-4">Question 36: Which of the following is a mixture?</h3>
                             <div class="flex flex-col">
                                 <label class="inline-flex items-center mt-3">
                                     <input type="radio" class="form-radio" name="question36" value="option1">
@@ -1078,7 +1078,7 @@
                                 </label>
                             </div>
                         </div>
-                        <h2 class="text-2xl font-bold mb-4">5) Personality Test</h2>
+                        <!-- <h2 class="text-2xl font-bold mb-4">5) Personality Test</h2>
                         <div class="bg-gray-200 shadow-md rounded px-8 pt-6 pb-8 mb-4">
                             <h3 class="text-xl font-bold mb-4">Question 41: When I have a problem, I prefer to:</h3>
                             <div class="flex flex-col">
@@ -1257,11 +1257,11 @@
                             <h3 class="text-xl font-bold mb-4">Question 50: When faced with a challenge, I:</h3>
                             <div class="flex flex-col">
                                 <label class="inline-flex items-center mt-3">
-                                    <input type="radio" class="form-radio" name="question50" value="option1">
+                                    <input type="radio" class="form-radio" name="question50" value="option1" >
                                     <span class="ml-2">Get excited and rise to the occasion</span>
                                 </label>
                                 <label class="inline-flex items-center mt-3">
-                                    <input type="radio" class="form-radio" name="question50" value="option2">
+                                    <input type="radio" class="form-radio" name="question50" value="option2" >
                                     <span class="ml-2">Feel nervous but try to overcome it</span>
                                 </label>
                                 <label class="inline-flex items-center mt-3">
@@ -1269,8 +1269,8 @@
                                     <span class="ml-2">Avoid the challenge if possible</span>
                                 </label>
                             </div>
-                        </div>
-
+                        </div> -->
+                        <p class="mb-2 text-xl text-red-500 bold text-center" id="error"></p>
                         
 
                         
@@ -1410,9 +1410,15 @@
         submitBtn.addEventListener("click", function () {
             var xhr = new XMLHttpRequest();
             var formData = $("#quiz-form").serializeArray()
+            if(formData.length != 40){
+                let err = document.getElementById('error')
+                err.innerHTML='All questions are required'
+                setTimeout(()=>{
+                err.innerHTML = ''
+             },2000)
+                return
+            } 
             var formData = JSON.stringify(formData)
-            console.log(formData)
-
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     // request was successful
@@ -1426,7 +1432,6 @@
             xhr.open("POST", "/mcqsData", true);
             xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8"); // replace with your server URL
             xhr.send(formData);
-            history.pushState({}, "", "/quiz");
             
             end()
         });

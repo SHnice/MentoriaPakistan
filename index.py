@@ -1,6 +1,6 @@
 # Importing flask module in the project is mandatory
 # An object of Flask class is our WSGI application.
-from flask import Flask, render_template,request, redirect, url_for
+from flask import Flask, render_template,request, redirect, url_for,session
 from pymongo import MongoClient
 
 
@@ -9,6 +9,7 @@ app = Flask(__name__)
 client = MongoClient("mongodb+srv://arsal0344:03444800061@cluster0.u6h8hwf.mongodb.net/?retryWrites=true&w=majority")
 db = client.mentoria
 collection = db.users
+app.secret_key = 'admin4321'
 try:
     client.admin.command('ping')
     print("Connected to MongoDB!")
@@ -27,12 +28,12 @@ def quiz():
 
 
 
-fulldata=[]
+# fulldata=[]
 @app.route('/submitData',methods=['post'])
 def submitData():
     data = request.get_json()
-    fulldata.append(data)
-    print('full: '+fulldata[0]['name'])
+    # fulldata.append(data)
+    session['key'] = data
 # result = collection.insert_one({'name': data['name'],'email':data['email'],'phone':data['phone']})
     return render_template('quiz.html',modal=True)
 
@@ -43,7 +44,7 @@ def mcqs():
 @app.route('/mcqsData',methods=['post'])
 def mcqsData():
     data = request.get_json()
-    data.append(fulldata[-1])
+    data.append(session.get('key'))
     answers = data[:-1]
     result = collection.insert_one({'answers':answers,'info':data[-1]})
     return 'done'

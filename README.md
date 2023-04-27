@@ -1,1 +1,1 @@
-A flask app for my friend's Mentoria organization
+A flask app for Mentoria organization
